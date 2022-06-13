@@ -15,10 +15,12 @@ struct NewStoreView: View {
     @State var phone = ""
 
     @State var desciption = ""
-    @State private var storeImage = UIImage(named: "newphoto")!
+    @State private var storeImage: UIImage?
     
     ///Source Image : Photo and Camera
     @State private var showPhotoOptions = false
+    @State private var showPicker = false
+
     @State private var photoSource: PhotoSource?
     
     @Environment(\.dismiss) var dismiss
@@ -27,7 +29,7 @@ struct NewStoreView: View {
         NavigationView {
             ScrollView {
                 VStack(alignment: .leading) {
-                    Image(uiImage: storeImage)
+                    Image(uiImage: (storeImage ?? UIImage(named: "newphoto"))!)
                         .resizable()
                         .scaledToFill()
                         .frame(minWidth: 0, maxWidth: .infinity)
@@ -80,6 +82,12 @@ struct NewStoreView: View {
                                         }
                             }
             }
+//            .sheet(isPresented: $showPicker, content: {
+//                ImagePicker(image: $storeImage)
+//            })
+            .sheet(isPresented: $showPicker, content: {
+                self.photoSource == PhotoSource.photoLibrary ? ImagePicker(image: $storeImage): nil
+            })
             .confirmationDialog(
                 Text("Choose your photo source"),
                 isPresented: $showPhotoOptions)
@@ -89,11 +97,12 @@ struct NewStoreView: View {
                 }
                 Button("Library") {
                     self.photoSource = .photoLibrary
+                    self.showPicker.toggle()
                 }
                 Button("Cancel", role: .cancel){
                     print("Dismiss")
                 }
-                
+
             }message: {
                 Text("Choose your source photo")
             }
