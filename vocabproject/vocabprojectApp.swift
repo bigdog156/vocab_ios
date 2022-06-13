@@ -9,9 +9,20 @@ import SwiftUI
 
 @main
 struct vocabprojectApp: App {
+        
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SettingView()
+//            TabView{
+//                ContentView()
+//                    .tabItem{
+//                        Label("Vocab", systemImage: "sun.min.fill")
+//                    }
+//                SettingView()
+//                    .tabItem{
+//                        Label("Setting", systemImage: "gear")
+//                    }
+//            }
         }
     }
 }
