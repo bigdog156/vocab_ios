@@ -20,6 +20,7 @@ struct NewStoreView: View {
     ///Source Image : Photo and Camera
     @State private var showPhotoOptions = false
     @State private var showPicker = false
+    @State private var showCamera = false
 
     @State private var photoSource: PhotoSource?
     
@@ -64,16 +65,11 @@ struct NewStoreView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .principal) {
-                                HStack {
-                                    Image(systemName: "plus.circle.fill")
-                                        .foregroundColor(Color.red)
-                                    Text("New Store")
-                                        .fontWeight(.semibold)
-                                        .font(.custom("Nunito-Bold", size: 20))
-                                        .foregroundColor(Color.red)
-                                    
-                                }
-                            }
+                    Text("New Store")
+                        .fontWeight(.semibold)
+                        .font(.custom("Nunito-Bold", size: 20))
+                        .foregroundColor(Color.red)
+                    }
                 ToolbarItem(placement: .navigationBarLeading) {
                                     Image(systemName: "arrowshape.turn.up.backward")
                                         .foregroundColor(Color.red)
@@ -81,12 +77,23 @@ struct NewStoreView: View {
                                             dismiss()
                                         }
                             }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Text("Save")
+                        .font(.custom("Nunito-Bold", size: 20))
+                        .foregroundColor(Color.red)
+                        .onTapGesture {
+                            print("Save ... ")
+                        }
+                    }
             }
-//            .sheet(isPresented: $showPicker, content: {
-//                ImagePicker(image: $storeImage)
-//            })
-            .sheet(isPresented: $showPicker, content: {
-                self.photoSource == PhotoSource.photoLibrary ? ImagePicker(image: $storeImage): nil
+            .fullScreenCover(item: $photoSource, content: { Source in
+                switch Source{
+                case .photoLibrary:
+                    ImagePicker(image: $storeImage)
+                case .camera:
+                    CameraPicker(image: $storeImage)
+                        .ignoresSafeArea()
+                }
             })
             .confirmationDialog(
                 Text("Choose your photo source"),
@@ -97,10 +104,10 @@ struct NewStoreView: View {
                 }
                 Button("Library") {
                     self.photoSource = .photoLibrary
-                    self.showPicker.toggle()
                 }
                 Button("Cancel", role: .cancel){
                     print("Dismiss")
+                    showPhotoOptions.toggle()
                 }
 
             }message: {

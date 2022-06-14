@@ -10,14 +10,19 @@ import SwiftUI
 
 struct CameraPicker: UIViewControllerRepresentable{
     
-    @Binding var image: UIImage
+    @Binding var image: UIImage?
 //    @Environment(\.dismiss) var dismiss
     
     func makeUIViewController(context: Context) -> UIImagePickerController {
         let cameraPicker = UIImagePickerController()
         cameraPicker.allowsEditing = false
         cameraPicker.sourceType = .camera
+        cameraPicker.delegate = context.coordinator
+        return cameraPicker
+    }
+    func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {
         
+        print("Update Camera")
     }
     func makeCoordinator() -> CoordinatorCamera {
         CoordinatorCamera(self)
@@ -32,10 +37,10 @@ class CoordinatorCamera: NSObject, UIImagePickerControllerDelegate, UINavigation
         self.parent = parent
     }
     
-    func picker(_ picker: UIImagePickerController, didFinishPicking result: [UIImagePickerController.InfoKey: Any]){
-        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
-            parent.image = image
-        }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        print("Call Camera Picker")
+        guard let selectedImage = info[.originalImage] as? UIImage else { return }
+        self.parent.image = selectedImage
         picker.dismiss(animated: true)
     }
 }

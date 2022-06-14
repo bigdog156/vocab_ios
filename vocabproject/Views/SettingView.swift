@@ -31,6 +31,7 @@ struct SettingView: View {
         Restaurant(name: "Royal Oak", type: "British", location: "London", image: "royaloak", isFavorite: false),
         Restaurant(name: "CASK Pub and Kitchen", type: "Thai", location: "London", image: "cask", isFavorite: false),
     ]
+    @Environment(\.colorScheme) private var colorScheme
     var body: some View {
         NavigationView {
             List{
@@ -70,8 +71,8 @@ struct SettingView: View {
                     NavigationLink{
                         NewStoreView()
                     }label: {
-                        Image(systemName: "plus")
-                            .foregroundColor(Color.black)
+                        Image(systemName: "doc.fill.badge.plus")
+                            .foregroundColor(colorScheme == .light ? Color.gray : Color.white.opacity(0.7))
                             .padding()
                     }
                 }
@@ -84,5 +85,6 @@ struct SettingView: View {
 struct SettingView_Previews: PreviewProvider {
     static var previews: some View {
         SettingView()
+            .preferredColorScheme(.light)
     }
 }
