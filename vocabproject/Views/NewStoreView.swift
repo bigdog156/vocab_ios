@@ -15,10 +15,13 @@ struct NewStoreView: View {
     @State var phone = ""
 
     @State var desciption = ""
-    @State private var storeImage = UIImage(named: "newphoto")!
+    @State private var storeImage: UIImage?
     
     ///Source Image : Photo and Camera
     @State private var showPhotoOptions = false
+    @State private var showPicker = false
+    @State private var showCamera = false
+
     @State private var photoSource: PhotoSource?
     
     @Environment(\.dismiss) var dismiss
@@ -27,7 +30,7 @@ struct NewStoreView: View {
         NavigationView {
             ScrollView {
                 VStack(alignment: .leading) {
-                    Image(uiImage: storeImage)
+                    Image(uiImage: (storeImage ?? UIImage(named: "newphoto"))!)
                         .resizable()
                         .scaledToFill()
                         .frame(minWidth: 0, maxWidth: .infinity)
@@ -62,16 +65,11 @@ struct NewStoreView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .principal) {
-                                HStack {
-                                    Image(systemName: "plus.circle.fill")
-                                        .foregroundColor(Color.red)
-                                    Text("New Store")
-                                        .fontWeight(.semibold)
-                                        .font(.custom("Nunito-Bold", size: 20))
-                                        .foregroundColor(Color.red)
-                                    
-                                }
-                            }
+                    Text("New Store")
+                        .fontWeight(.semibold)
+                        .font(.custom("Nunito-Bold", size: 20))
+                        .foregroundColor(Color.red)
+                    }
                 ToolbarItem(placement: .navigationBarLeading) {
                                     Image(systemName: "arrowshape.turn.up.backward")
                                         .foregroundColor(Color.red)
@@ -79,7 +77,24 @@ struct NewStoreView: View {
                                             dismiss()
                                         }
                             }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Text("Save")
+                        .font(.custom("Nunito-Bold", size: 20))
+                        .foregroundColor(Color.red)
+                        .onTapGesture {
+                            print("Save ... ")
+                        }
+                    }
             }
+            .fullScreenCover(item: $photoSource, content: { Source in
+                switch Source{
+                case .photoLibrary:
+                    ImagePicker(image: $storeImage)
+                case .camera:
+                    CameraPicker(image: $storeImage)
+                        .ignoresSafeArea()
+                }
+            })
             .confirmationDialog(
                 Text("Choose your photo source"),
                 isPresented: $showPhotoOptions)
@@ -92,8 +107,9 @@ struct NewStoreView: View {
                 }
                 Button("Cancel", role: .cancel){
                     print("Dismiss")
+                    showPhotoOptions.toggle()
                 }
-                
+
             }message: {
                 Text("Choose your source photo")
             }

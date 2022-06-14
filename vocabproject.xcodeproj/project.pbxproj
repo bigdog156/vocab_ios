@@ -25,6 +25,8 @@
 		8BF3CA9D2856E2DF00FE9706 /* NewStoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF3CA9C2856E2DF00FE9706 /* NewStoreView.swift */; };
 		8BF3CAA02856E85900FE9706 /* TextFormField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF3CA9F2856E85900FE9706 /* TextFormField.swift */; };
 		8BF3CAA22856EB7B00FE9706 /* FormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF3CAA12856EB7B00FE9706 /* FormTextField.swift */; };
+		8BF3CAA728572E6E00FE9706 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF3CAA628572E6E00FE9706 /* ImagePicker.swift */; };
+		8BF3CAA92857462B00FE9706 /* CameraPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF3CAA82857462B00FE9706 /* CameraPicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 		8BF3CA9C2856E2DF00FE9706 /* NewStoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewStoreView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		8BF3CA9F2856E85900FE9706 /* TextFormField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFormField.swift; sourceTree = "<group>"; };
 		8BF3CAA12856EB7B00FE9706 /* FormTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
+		8BF3CAA628572E6E00FE9706 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		8BF3CAA82857462B00FE9706 /* CameraPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				8B995A5B2853186C00232D5D /* Info.plist */,
+				8BF3CAA328572E2600FE9706 /* Util */,
 				8B995A53285300A200232D5D /* Resources */,
 				8B966F4F2852049E00807EFA /* Controllers */,
 				8B966F4C2851EDD900807EFA /* Views */,
@@ -159,6 +164,15 @@
 			path = TextComponent;
 			sourceTree = "<group>";
 		};
+		8BF3CAA328572E2600FE9706 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				8BF3CAA628572E6E00FE9706 /* ImagePicker.swift */,
+				8BF3CAA82857462B00FE9706 /* CameraPicker.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -235,6 +249,7 @@
 				8B101FC32854F9D5003A1B4E /* ReviewView.swift in Sources */,
 				8B966F4E2851F39400807EFA /* Store.swift in Sources */,
 				8B101FC12854F466003A1B4E /* PhotoSource.swift in Sources */,
+				8BF3CAA728572E6E00FE9706 /* ImagePicker.swift in Sources */,
 				8BF3CAA02856E85900FE9706 /* TextFormField.swift in Sources */,
 				8B995A5D285326A800232D5D /* FoodAppBar.swift in Sources */,
 				8B966F4B2851EBE900807EFA /* Restaurant.swift in Sources */,
@@ -244,6 +259,7 @@
 				8B44B270284F1BEA0008E8FA /* ContentView.swift in Sources */,
 				8BF3CAA22856EB7B00FE9706 /* FormTextField.swift in Sources */,
 				8B44B26E284F1BEA0008E8FA /* vocabprojectApp.swift in Sources */,
+				8BF3CAA92857462B00FE9706 /* CameraPicker.swift in Sources */,
 				8B995A512852EDC700232D5D /* DetailStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -377,6 +393,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = vocabproject/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need the camera";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need the Photo";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -407,6 +425,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = vocabproject/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need the camera";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need the Photo";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
