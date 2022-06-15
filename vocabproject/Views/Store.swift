@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct Store: View {
+struct StoreView: View {
 
-    @Binding var store: Restaurant
+    @ObservedObject var store: Restaurant
     
     @State private var showOptions = false
     @State private var showActionSheet = false
@@ -18,12 +18,15 @@ struct Store: View {
 
     var body: some View {
         HStack{
-            Image(store.image)
-                .resizable()
-                .scaledToFill()
-                .frame(width: 90, height: 90)
-                .clipShape(RoundedRectangle(cornerRadius: 20))
-            
+            if let image = store.image{
+                Image(uiImage: UIImage(data: image) ?? UIImage())
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 90, height: 90)
+                    .clipShape(RoundedRectangle(cornerRadius: 20))
+
+            }
+                        
             VStack (alignment:.leading, spacing: 10){
                 
                 Text(store.name)
@@ -66,7 +69,7 @@ struct Store: View {
         }
         .contextMenu {
             Button{
-                self.store.onFavorite()
+                self.store.isFavorite.toggle()
             }label: {
                 HStack{
                     Text("Cheer Star to Store... ")
@@ -77,7 +80,8 @@ struct Store: View {
         }
         .sheet(isPresented: $showSheet) {
             let defaultText = "Just kidding me ... !"
-            if let imageToShare = UIImage(named: store.image){
+            if let image = store.image,
+            let imageToShare = UIImage(data: image){
                 ActivityView(activityItems: [defaultText, imageToShare])
             } else{
                 ActivityView(activityItems: [defaultText])
@@ -86,8 +90,8 @@ struct Store: View {
     }
 }
 
-struct Store_Previews: PreviewProvider {
+struct StoreView_Previews: PreviewProvider {
     static var previews: some View {
-        Store(store: .constant( Restaurant(name: "CASK Pub and Kitchen", type:"Thai", location: "London", image: "cask", isFavorite: false)))
+        StoreView(store: (PersistenceController.testData?.first)!)
     }
 }

@@ -22,11 +22,13 @@
 		8B995A592853012800232D5D /* Nunito-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B995A562853012800232D5D /* Nunito-Bold.ttf */; };
 		8B995A5A2853012800232D5D /* Nunito-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B995A572853012800232D5D /* Nunito-ExtraLight.ttf */; };
 		8B995A5D285326A800232D5D /* FoodAppBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B995A5C285326A800232D5D /* FoodAppBar.swift */; };
+		8BA598112859E521002F7F1A /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8BA5980F2859E521002F7F1A /* DataModel.xcdatamodeld */; };
 		8BF3CA9D2856E2DF00FE9706 /* NewStoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF3CA9C2856E2DF00FE9706 /* NewStoreView.swift */; };
 		8BF3CAA02856E85900FE9706 /* TextFormField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF3CA9F2856E85900FE9706 /* TextFormField.swift */; };
 		8BF3CAA22856EB7B00FE9706 /* FormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF3CAA12856EB7B00FE9706 /* FormTextField.swift */; };
 		8BF3CAA728572E6E00FE9706 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF3CAA628572E6E00FE9706 /* ImagePicker.swift */; };
 		8BF3CAA92857462B00FE9706 /* CameraPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF3CAA82857462B00FE9706 /* CameraPicker.swift */; };
+		8BF3CB152859CAA100FE9706 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF3CB142859CAA100FE9706 /* Persistence.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,11 +49,13 @@
 		8B995A572853012800232D5D /* Nunito-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-ExtraLight.ttf"; sourceTree = "<group>"; };
 		8B995A5B2853186C00232D5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8B995A5C285326A800232D5D /* FoodAppBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodAppBar.swift; sourceTree = "<group>"; };
+		8BA598102859E521002F7F1A /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		8BF3CA9C2856E2DF00FE9706 /* NewStoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewStoreView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		8BF3CA9F2856E85900FE9706 /* TextFormField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFormField.swift; sourceTree = "<group>"; };
 		8BF3CAA12856EB7B00FE9706 /* FormTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
 		8BF3CAA628572E6E00FE9706 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		8BF3CAA82857462B00FE9706 /* CameraPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPicker.swift; sourceTree = "<group>"; };
+		8BF3CB142859CAA100FE9706 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +88,7 @@
 		8B44B26C284F1BEA0008E8FA /* vocabproject */ = {
 			isa = PBXGroup;
 			children = (
+				8BA5980F2859E521002F7F1A /* DataModel.xcdatamodeld */,
 				8B995A5B2853186C00232D5D /* Info.plist */,
 				8BF3CAA328572E2600FE9706 /* Util */,
 				8B995A53285300A200232D5D /* Resources */,
@@ -133,6 +138,7 @@
 			children = (
 				8B966F50285204B600807EFA /* ShareComponent.swift */,
 				8B995A5C285326A800232D5D /* FoodAppBar.swift */,
+				8BF3CB142859CAA100FE9706 /* Persistence.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -250,9 +256,11 @@
 				8B966F4E2851F39400807EFA /* Store.swift in Sources */,
 				8B101FC12854F466003A1B4E /* PhotoSource.swift in Sources */,
 				8BF3CAA728572E6E00FE9706 /* ImagePicker.swift in Sources */,
+				8BA598112859E521002F7F1A /* DataModel.xcdatamodeld in Sources */,
 				8BF3CAA02856E85900FE9706 /* TextFormField.swift in Sources */,
 				8B995A5D285326A800232D5D /* FoodAppBar.swift in Sources */,
 				8B966F4B2851EBE900807EFA /* Restaurant.swift in Sources */,
+				8BF3CB152859CAA100FE9706 /* Persistence.swift in Sources */,
 				8B44B27C284F23550008E8FA /* SettingView.swift in Sources */,
 				8BF3CA9D2856E2DF00FE9706 /* NewStoreView.swift in Sources */,
 				8B966F51285204B600807EFA /* ShareComponent.swift in Sources */,
@@ -467,6 +475,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8BA5980F2859E521002F7F1A /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8BA598102859E521002F7F1A /* DataModel.xcdatamodel */,
+			);
+			currentVersion = 8BA598102859E521002F7F1A /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 8B44B262284F1BEA0008E8FA /* Project object */;
 }
