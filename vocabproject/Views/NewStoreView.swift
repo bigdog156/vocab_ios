@@ -106,8 +106,7 @@ struct NewStoreView: View {
                     self.photoSource = .photoLibrary
                 }
                 Button("Cancel", role: .cancel){
-                    print("Dismiss")
-                    showPhotoOptions.toggle()
+                    print("Dismiss \(showPhotoOptions)")
                 }
 
             }message: {

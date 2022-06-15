@@ -9,10 +9,13 @@ import SwiftUI
 
 @main
 struct vocabprojectApp: App {
-        
+    
+    let persistanceController = PersistenceController.shared
+    
     var body: some Scene {
         WindowGroup {
             SettingView()
+                .environment(\.managedObjectContext, persistanceController.container.viewContext)
 //            TabView{
 //                ContentView()
 //                    .tabItem{
