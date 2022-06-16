@@ -23,6 +23,7 @@
 		8B995A5A2853012800232D5D /* Nunito-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B995A572853012800232D5D /* Nunito-ExtraLight.ttf */; };
 		8B995A5D285326A800232D5D /* FoodAppBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B995A5C285326A800232D5D /* FoodAppBar.swift */; };
 		8BA598112859E521002F7F1A /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8BA5980F2859E521002F7F1A /* DataModel.xcdatamodeld */; };
+		8BA59814285ACDF5002F7F1A /* RestaurantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA59813285ACDF5002F7F1A /* RestaurantViewModel.swift */; };
 		8BF3CA9D2856E2DF00FE9706 /* NewStoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF3CA9C2856E2DF00FE9706 /* NewStoreView.swift */; };
 		8BF3CAA02856E85900FE9706 /* TextFormField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF3CA9F2856E85900FE9706 /* TextFormField.swift */; };
 		8BF3CAA22856EB7B00FE9706 /* FormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF3CAA12856EB7B00FE9706 /* FormTextField.swift */; };
@@ -50,6 +51,7 @@
 		8B995A5B2853186C00232D5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8B995A5C285326A800232D5D /* FoodAppBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodAppBar.swift; sourceTree = "<group>"; };
 		8BA598102859E521002F7F1A /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		8BA59813285ACDF5002F7F1A /* RestaurantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantViewModel.swift; sourceTree = "<group>"; };
 		8BF3CA9C2856E2DF00FE9706 /* NewStoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewStoreView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		8BF3CA9F2856E85900FE9706 /* TextFormField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFormField.swift; sourceTree = "<group>"; };
 		8BF3CAA12856EB7B00FE9706 /* FormTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 				8BF3CAA328572E2600FE9706 /* Util */,
 				8B995A53285300A200232D5D /* Resources */,
 				8B966F4F2852049E00807EFA /* Controllers */,
+				8BA59812285ACDC3002F7F1A /* ViewModel */,
 				8B966F4C2851EDD900807EFA /* Views */,
 				8B966F492851EBD400807EFA /* Models */,
 				8B44B26D284F1BEA0008E8FA /* vocabprojectApp.swift */,
@@ -159,6 +162,14 @@
 				8B995A552853012800232D5D /* Nunito-Regular.ttf */,
 			);
 			path = font;
+			sourceTree = "<group>";
+		};
+		8BA59812285ACDC3002F7F1A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8BA59813285ACDF5002F7F1A /* RestaurantViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		8BF3CA9E2856E83D00FE9706 /* TextComponent */ = {
@@ -265,6 +276,7 @@
 				8BF3CA9D2856E2DF00FE9706 /* NewStoreView.swift in Sources */,
 				8B966F51285204B600807EFA /* ShareComponent.swift in Sources */,
 				8B44B270284F1BEA0008E8FA /* ContentView.swift in Sources */,
+				8BA59814285ACDF5002F7F1A /* RestaurantViewModel.swift in Sources */,
 				8BF3CAA22856EB7B00FE9706 /* FormTextField.swift in Sources */,
 				8B44B26E284F1BEA0008E8FA /* vocabprojectApp.swift in Sources */,
 				8BF3CAA92857462B00FE9706 /* CameraPicker.swift in Sources */,

@@ -20,7 +20,6 @@ public class Restaurant: NSManagedObject{
 
 extension Restaurant{
 
-
     enum Rating: String, CaseIterable {
         case awesome
         case good
@@ -50,5 +49,12 @@ extension Restaurant{
             self.ratingText = newValue?.rawValue
         }
     }
-
+    func addRestaurant( name: String, location: String, type: String, phone: String, info: String, image: Data) {
+        self.name = name
+        self.location = location
+        self.type = type
+        self.phone = phone
+        self.info = info
+        self.image = image
+    }
 }
