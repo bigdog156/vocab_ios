@@ -6,17 +6,20 @@
 //
 
 import SwiftUI
+import Combine
 
 struct NewStoreView: View {
     
-    @State var storeName = ""
-    @State var location = ""
-    @State var type = ""
-    @State var phone = ""
-
-    @State var desciption = ""
-    @State private var storeImage: UIImage?
+    //State Form Restaurant
+    @ObservedObject private var store: RestaurantFormViewModel
+    @Environment(\.managedObjectContext) var context
     
+    init(){
+        let viewModel = RestaurantFormViewModel()
+        viewModel.image = UIImage(named: "newphoto")!
+        store = viewModel
+    }
+        
     ///Source Image : Photo and Camera
     @State private var showPhotoOptions = false
     @State private var showPicker = false
@@ -30,7 +33,7 @@ struct NewStoreView: View {
         NavigationView {
             ScrollView {
                 VStack(alignment: .leading) {
-                    Image(uiImage: (storeImage ?? UIImage(named: "newphoto"))!)
+                    Image(uiImage: store.image!)
                         .resizable()
                         .scaledToFill()
                         .frame(minWidth: 0, maxWidth: .infinity)
@@ -40,12 +43,12 @@ struct NewStoreView: View {
                         .onTapGesture {
                             self.showPhotoOptions.toggle()
                         }
-                    TextFormField(label: "Name", placeholder: "Fill name Store", value: $storeName)
-                    TextFormField(label: "Location", placeholder: "Your location...", value: $location)
-                    TextFormField(label: "Type", placeholder: "Type Store ... Food, Drink", value: $type)
-                    TextFormField(label: "Phone", placeholder: "Phone your Store", value: $phone)
+                    TextFormField(label: "Name", placeholder: "Fill name Store", value: $store.name)
+                    TextFormField(label: "Location", placeholder: "Your location...", value: $store.location)
+                    TextFormField(label: "Type", placeholder: "Type Store ... Food, Drink", value: $store.type)
+                    TextFormField(label: "Phone", placeholder: "Phone your Store", value: $store.phone)
 
-                    FormTextField(label: "Description", value: $desciption)
+                    FormTextField(label: "Description", value: $store.info)
                     
                     Button{
                         //MARK:Todo
@@ -83,15 +86,16 @@ struct NewStoreView: View {
                         .foregroundColor(Color.red)
                         .onTapGesture {
                             print("Save ... ")
+                            saveStore()
                         }
                     }
             }
             .fullScreenCover(item: $photoSource, content: { Source in
                 switch Source{
                 case .photoLibrary:
-                    ImagePicker(image: $storeImage)
+                    ImagePicker(image: $store.image)
                 case .camera:
-                    CameraPicker(image: $storeImage)
+                    CameraPicker(image:  $store.image)
                         .ignoresSafeArea()
                 }
             })
@@ -116,6 +120,28 @@ struct NewStoreView: View {
         .navigationBarHidden(true)
         .padding(.horizontal)
     }
+    
+    //MARK: Function save to Persistence Data
+    private func saveStore(){
+        
+        let newStore = Restaurant(context: context)
+        newStore.addRestaurant(
+            name: store.name,
+            location: store.location,
+            type: store.type,
+            phone: store.phone,
+            info: store.info, image: (store.image?.pngData()!)!
+        )
+        
+        do{
+            try context.save()
+        }catch{
+            print("Failed to save the record...")
+            print(error.localizedDescription)
+        }
+        
+    }
+    
 }
 
 struct NewStoreView_Previews: PreviewProvider {
