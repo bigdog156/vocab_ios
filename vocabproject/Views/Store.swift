@@ -10,7 +10,7 @@ import SwiftUI
 struct StoreView: View {
 
     @ObservedObject var store: Restaurant
-    
+    @Environment(\.managedObjectContext) var context
     @State private var showOptions = false
     @State private var showActionSheet = false
     @State private var showAlert = false
@@ -44,6 +44,10 @@ struct StoreView: View {
             Spacer()
             Image(systemName: "star.fill")
                 .foregroundColor(store.isFavorite ? Color.indigo: Color.gray)
+                .onTapGesture {
+                    store.isFavorite.toggle()
+                    try? context.save()
+                }
         }
         .confirmationDialog(
             Text("Star Store"),
@@ -51,6 +55,7 @@ struct StoreView: View {
         {
             Button("Star Store",role: .cancel){
                 store.isFavorite.toggle()
+                try? context.save()
             }
             Button("None Star",role: .destructive){
                 showAlert.toggle()

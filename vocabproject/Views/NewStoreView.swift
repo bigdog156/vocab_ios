@@ -87,6 +87,7 @@ struct NewStoreView: View {
                         .onTapGesture {
                             print("Save ... ")
                             saveStore()
+                            dismiss()
                         }
                     }
             }
@@ -116,9 +117,13 @@ struct NewStoreView: View {
             }message: {
                 Text("Choose your source photo")
             }
+            .padding(.horizontal)
+            .onTapGesture {
+                UIApplication.shared.endEditing()
+            }
+
         }
         .navigationBarHidden(true)
-        .padding(.horizontal)
     }
     
     //MARK: Function save to Persistence Data

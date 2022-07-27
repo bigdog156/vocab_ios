@@ -12,6 +12,7 @@ struct DetailStore: View {
     
     @ObservedObject var store: Restaurant
     @State private var showReview = false
+    @Environment(\.managedObjectContext) var context
     func handlerBarButton() {
         self.showReview ? self.showReview.toggle(): dismiss()
     }
@@ -60,6 +61,7 @@ struct DetailStore: View {
                         .onTapGesture {
                             print("Toggle star in detail")
                             store.isFavorite.toggle()
+                            try? self.context.save()
                         }
                 }.padding()
                 
@@ -105,9 +107,13 @@ struct DetailStore: View {
                 .ignoresSafeArea()
             : nil
         }
+      
 
     }
-    
+    //MARK: Toggle Favorite
+    private func toggleFavorite(){
+        
+    }
 }
 
 struct DetailStore_Previews: PreviewProvider {

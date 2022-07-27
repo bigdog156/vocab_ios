@@ -56,5 +56,7 @@ extension Restaurant{
         self.phone = phone
         self.info = info
         self.image = image
+        self.isFavorite = false
     }
+    
 }

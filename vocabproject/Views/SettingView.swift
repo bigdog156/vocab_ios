@@ -10,15 +10,12 @@ import SwiftUI
 struct SettingView: View {
     @FetchRequest(entity: Restaurant.entity(), sortDescriptors: [])
     var restaurants: FetchedResults<Restaurant>
-    
+    @State var searchText: String = ""
     @Environment(\.colorScheme) private var colorScheme
     @Environment(\.managedObjectContext) var context
     
-    private func deleteRecord(indexSet: IndexSet) {
-        for index in indexSet{
-            let itemToDelete = restaurants[index]
-            context.delete(itemToDelete)
-        }
+    private func deleteRecord(index: Int) {
+        context.delete(restaurants[index])
         DispatchQueue.main.async {
             do{
                 try context.save()
@@ -44,13 +41,23 @@ struct SettingView: View {
                         .swipeActions(edge: .leading, allowsFullSwipe: false) {
                             Button{
                                 restaurants[index].isFavorite.toggle()
+                                try? context.save()
                             }label: {
                                 Image(systemName: "heart")
                                     .foregroundColor( restaurants[index].isFavorite ? Color.red : Color.gray)
                             }
                         }
+                        .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                            Button{
+                                deleteRecord(index: index)
+                                try? context.save()
+                            }label: {
+                                Image(systemName: "trash.fill")
+                                    .foregroundColor(.red)
+                            }
+                            .tint(.red)
+                        }
                     }
-                    .onDelete(perform: deleteRecord)
                     .listRowSeparator(.hidden)
                 }
             }
@@ -69,14 +76,27 @@ struct SettingView: View {
                 }
             }
         }
-        .accentColor(.white)
+        .accentColor(.primary)
+        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always),prompt: "Search store ..."){
+            Text("\(Image(systemName: "scribble.variable")) Lam store")
+                .searchCompletion("lam")
+            Text("Cafe").searchCompletion("cafe")
+        }
+        .onChange(of: searchText) { newValue in
+            if !searchText.isEmpty {
+                let predicate = NSPredicate(format: "name CONTAINS[c] %@", searchText)
+                restaurants.nsPredicate = predicate
+            }else{
+                restaurants.nsPredicate = NSPredicate(value: true)
+            }
+        }
     }
 }
 
 struct SettingView_Previews: PreviewProvider {
     static var previews: some View {
         SettingView()
-//            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
             .preferredColorScheme(.light)
     }
 }
